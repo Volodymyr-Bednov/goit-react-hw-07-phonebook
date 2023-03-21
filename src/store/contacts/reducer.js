@@ -1,14 +1,23 @@
 import { createReducer } from '@reduxjs/toolkit';
+import { fetchContacts } from 'store/api';
 import * as actions from './actionTypes';
 
-const iniState = [];
+const iniState = {
+  items: [],
+  isLoading: true,
+  error: null,
+};
 
 export const contactsReducer = createReducer(iniState, builder => {
   builder
     .addCase(actions.CONTACTS_ADDED, (state, action) => {
-      state.push(action.payload);
+      state.items.push(action.payload);
     })
     .addCase(actions.CONTACTS_DELETED, (state, action) => {
-      return state.filter(item => item.id !== action.payload);
+      return state.items.filter(item => item.id !== action.payload);
+    })
+    .addCase(fetchContacts.fulfilled, (state, action) => {
+      state.items = action.payload;
+      state.isLoading = false;
     });
 });

@@ -5,6 +5,7 @@ import { ItemContact } from './ItemContact';
 
 export const ListContacts = () => {
   const contacts = useSelector(getContacts);
+  console.log('contacts', contacts);
   const filter = useSelector(searchKey);
   const getFilteredContacts = (contacts, filter = '') => {
     return contacts.filter(item =>

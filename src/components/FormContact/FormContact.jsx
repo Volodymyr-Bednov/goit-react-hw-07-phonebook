@@ -1,6 +1,7 @@
 import { nanoid } from '@reduxjs/toolkit';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'store/contacts/actionCreators';
+import { addContact } from 'store/api';
+// import { addContact } from 'store/contacts/actionCreators';
 import { getContacts } from 'store/contacts/selectors';
 import css from './FormContact.module.css';
 
@@ -21,9 +22,7 @@ export const FormContact = () => {
 
       if (nameMatch.length) return alert(`${nameValue} is already in contacts`);
     }
-    dispatch(
-      addContact({ id: nanoid(), name: nameValue, number: numbervalue })
-    );
+    dispatch(addContact({ id: nanoid(), name: nameValue, phone: numbervalue }));
     evt.target.reset();
   };
   return (

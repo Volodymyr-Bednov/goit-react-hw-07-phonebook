@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import { deleteContact } from 'store/contacts/actionCreators';
+import { deleteContact } from 'store/api';
+
 import css from './ListContacts.module.css';
-export const ItemContact = ({ dataItem: { id, name, number } }) => {
+export const ItemContact = ({ dataItem: { id, name, phone } }) => {
   const dispatch = useDispatch();
 
   const deleteContactHandler = evt => {
@@ -12,7 +13,7 @@ export const ItemContact = ({ dataItem: { id, name, number } }) => {
   //console.log(name);
   return (
     <li className={css.item}>
-      {name}: {number}
+      {name}: {phone}
       <button
         className={css.btnDel}
         data-id={id}
